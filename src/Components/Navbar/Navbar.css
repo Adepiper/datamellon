@@ -1,0 +1,29 @@
+* {
+  padding: 0 !important;
+  box-sizing: border-box;
+  transition: 300ms linear ease-in-out;
+}
+.navbar {
+  padding: 15px !important;
+}
+.navbar * {
+  color: #fff !important;
+}
+.navbar .navbar-brand {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: #b4fdbc !important;
+}
+.navbar ul {
+  margin-right: 100px;
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.navbar ul li a:hover {
+  color: #b4fdbc !important;
+}
