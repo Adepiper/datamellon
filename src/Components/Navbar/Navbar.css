@@ -5,6 +5,7 @@
 }
 .navbar {
   padding: 15px !important;
+  background-color: #ac0e28 !important;
 }
 .navbar * {
   color: #fff !important;
@@ -16,7 +17,7 @@
   align-items: center;
   font-size: 30px;
   font-weight: 600;
-  color: #b4fdbc !important;
+  color: #013766 !important;
 }
 .navbar ul {
   margin-right: 100px;
@@ -25,5 +26,14 @@
   justify-content: space-between;
 }
 .navbar ul li a:hover {
-  color: #b4fdbc !important;
+  color: #013766 !important;
+}
+@media only screen and (max-width: 990px) {
+  .navbar ul {
+    width: 85%;
+    text-align: left;
+  }
+  .navbar .navbar-brand {
+    width: 40%;
+  }
 }
