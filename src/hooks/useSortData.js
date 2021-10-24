@@ -17,11 +17,10 @@ const useSortData = () => {
 
 	const getTotalAmountFromKeys = (data = [], keys = [], type) =>
 		keys.map((key) => {
-			let object = {};
-			object[key] = data.filter(
+			const value = data.filter(
 				(element) => element[type] === key
 			).length;
-			return object;
+			return { name: key, value };
 		});
 
 	return getKeys;

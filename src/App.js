@@ -10,23 +10,10 @@ import NormalLoader from './Components/NormalLoader/NormalLoader';
 import SearchBar from './Components/SearchBar/SearchBar';
 import useHttps from './hooks/useHttps';
 import TimeSeriesChart from './Components/charts/TimeSeriesChart/TimeSeriesChart';
-import { useEffect } from 'react';
 import DropdownContainer from './Components/dropdown/Dropdown';
-import useSortData from './hooks/useSortData';
-import { useSelector } from 'react-redux';
 
 function App() {
 	const { sendRequest, loading } = useHttps();
-	const {
-		data: { allData },
-	} = useSelector((state) => state);
-	const sortData = useSortData();
-
-	useEffect(() => {
-		if (allData.length > 0) {
-			sortData(allData, 'Region');
-		}
-	}, [allData]);
 
 	return (
 		<div className='App'>

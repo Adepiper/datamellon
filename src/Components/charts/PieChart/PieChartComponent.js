@@ -1,15 +1,8 @@
 import React from 'react';
 import './piechart.css';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
-
-const data = [
-	{ name: 'Group A', value: 400 },
-	{ name: 'Group B', value: 300 },
-	{ name: 'Group C', value: 300 },
-	{ name: 'Group D', value: 200 },
-];
-
-const COLORS = ['#8884d8', '#b4fdbc', '#FFBB28', '#000000'];
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
+import { useSelector } from 'react-redux';
+import randomColor from 'randomcolor';
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({
@@ -39,30 +32,46 @@ const renderCustomizedLabel = ({
 };
 
 const PieChartComponent = () => {
+	const {
+		data: { sortedData },
+	} = useSelector((state) => state);
+
+	const generateRandomColors = () =>
+		[...sortedData].map((data) => {
+			return { color: randomColor(), name: data.name };
+		});
+
 	return (
-		<div>
-			<ResponsiveContainer aspect={1.5}>
-				<PieChart>
-					<Pie
-						data={data}
-						cx='50%'
-						cy='50%'
-						labelLine={false}
-						label={renderCustomizedLabel}
-						outerRadius={150}
-						fill='#8884d8'
-						dataKey='value'
-					>
-						{data.map((entry, index) => (
-							<Cell
-								key={`cell-${index}`}
-								fill={COLORS[index % COLORS.length]}
-							/>
-						))}
-					</Pie>
-				</PieChart>
-			</ResponsiveContainer>
-		</div>
+		<>
+			{sortedData.length > 0 && (
+				<ResponsiveContainer aspect={1.5}>
+					<PieChart>
+						<Pie
+							data={sortedData}
+							cx='50%'
+							cy='50%'
+							labelLine={false}
+							label={renderCustomizedLabel}
+							outerRadius={150}
+							dataKey='value'
+						>
+							{sortedData.map((entry, index) => (
+								<Cell
+									key={`cell-${index}`}
+									fill={
+										generateRandomColors()[
+											index %
+												generateRandomColors().length
+										].color
+									}
+								/>
+							))}
+						</Pie>
+						<Legend verticalAlign='top' height={36} />
+					</PieChart>
+				</ResponsiveContainer>
+			)}
+		</>
 	);
 };
 
