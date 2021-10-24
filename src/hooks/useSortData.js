@@ -1,4 +1,8 @@
+import { useDispatch } from 'react-redux';
+import { dataAction } from '../redux/slices/dataSlice';
+
 const useSortData = () => {
+	const dispatch = useDispatch();
 	const getKeys = (data = [], type) => {
 		let obj = {};
 
@@ -7,7 +11,8 @@ const useSortData = () => {
 		});
 		const keys = Object.keys(obj);
 
-		getTotalAmountFromKeys(data, keys, type);
+		const sortedData = getTotalAmountFromKeys(data, keys, type);
+		dispatch(dataAction.setSortData(sortedData));
 	};
 
 	const getTotalAmountFromKeys = (data = [], keys = [], type) =>

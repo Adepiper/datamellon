@@ -1,10 +1,12 @@
 /* eslint-disable no-undef */
 import { useCallback, useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { dataAction } from '../redux/slices/dataSlice';
 
 const useHttps = () => {
 	const [loading, setLoading] = useState(false);
-	const [data, setData] = useState([]);
 	const [cancel, setCancel] = useState(false);
+	const dispatch = useDispatch();
 
 	const httpErrorCallback = (response, responseCallback) => {
 		if (response.status === 401) {
@@ -18,7 +20,6 @@ const useHttps = () => {
 	};
 
 	useEffect(() => {
-		// sendRequest();
 		return () => {
 			setCancel(true);
 		};
@@ -46,18 +47,17 @@ const useHttps = () => {
 
 			const data = await response.json();
 
-			setData(data);
+			dispatch(dataAction.setALLData(data));
 			setLoading(false);
 		} catch (err) {
 			console.log(err.message);
 			setLoading(false);
 		}
-	}, []);
+	}, [cancel, dispatch]);
 
 	return {
 		sendRequest,
 		loading,
-		data,
 	};
 };
 

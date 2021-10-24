@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	allData: [],
 	sortedData: [],
+	type: 'Region',
 };
 
 const dataSlice = createSlice({
@@ -14,6 +15,9 @@ const dataSlice = createSlice({
 		},
 		setSortData(state, action) {
 			state.sortedData = action.payload;
+		},
+		setType(state, action) {
+			state.type = action.payload;
 		},
 	},
 });

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BarChartComponent from './Components/charts/Barchart/BarChartComponent';
@@ -12,16 +13,20 @@ import TimeSeriesChart from './Components/charts/TimeSeriesChart/TimeSeriesChart
 import { useEffect } from 'react';
 import DropdownContainer from './Components/dropdown/Dropdown';
 import useSortData from './hooks/useSortData';
+import { useSelector } from 'react-redux';
 
 function App() {
-	const { sendRequest, data, loading } = useHttps();
+	const { sendRequest, loading } = useHttps();
+	const {
+		data: { allData },
+	} = useSelector((state) => state);
 	const sortData = useSortData();
 
 	useEffect(() => {
-		if (data.length > 0) {
-			sortData(data, 'Region');
+		if (allData.length > 0) {
+			sortData(allData, 'Region');
 		}
-	}, [data]);
+	}, [allData]);
 
 	return (
 		<div className='App'>
