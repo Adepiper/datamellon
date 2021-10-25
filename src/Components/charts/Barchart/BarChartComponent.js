@@ -18,18 +18,16 @@ const BarChartComponent = () => {
 	} = useSelector((state) => state);
 	return (
 		<>
-			{sortedGraphData.length > 0 && (
-				<ResponsiveContainer aspect={1.8}>
-					<BarChart data={sortedGraphData}>
-						<CartesianGrid strokeDasharray='3 3' />
-						<XAxis dataKey='name' />
-						<YAxis />
-						<Tooltip />
-						<Legend />
-						<Bar dataKey='value' fill='#8884d8' />
-					</BarChart>
-				</ResponsiveContainer>
-			)}
+			<ResponsiveContainer aspect={1.8}>
+				<BarChart data={sortedGraphData}>
+					<CartesianGrid strokeDasharray='3 3' />
+					<XAxis dataKey='name' />
+					<YAxis />
+					<Tooltip />
+					<Legend />
+					<Bar dataKey='Total Number' fill='#8884d8' />
+				</BarChart>
+			</ResponsiveContainer>
 		</>
 	);
 };

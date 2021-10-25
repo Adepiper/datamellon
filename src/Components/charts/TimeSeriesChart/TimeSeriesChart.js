@@ -1,57 +1,50 @@
-import React from "react";
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
-  Charts,
-  ChartContainer,
-  ChartRow,
-  YAxis,
-  LineChart,
-} from "react-timeseries-charts";
-import { TimeSeries } from "pondjs";
-
-const data = {
-  name: "traffic",
-  columns: ["time", "in", "out"],
-  points: [
-    [1400425947000, 52, 41],
-    [1400425948000, 18, 45],
-    [1400425949000, 26, 49],
-    [1400425950000, 93, 81],
-  ],
-};
-
-const timeseries = new TimeSeries(data);
+	LineChart,
+	CartesianGrid,
+	XAxis,
+	YAxis,
+	Tooltip,
+	Legend,
+	Line,
+	ResponsiveContainer,
+} from 'recharts';
 
 const TimeSeriesChart = () => {
-  return (
-    <div>
-      <ChartContainer timeRange={timeseries.timerange()} width={500}>
-        <ChartRow height="200">
-          <YAxis
-            id="axis1"
-            label="AUD"
-            min={0.5}
-            max={1.5}
-            width="60"
-            type="linear"
-            format="$,.2f"
-          />
-          <Charts>
-            <LineChart axis="axis1" series={timeseries} />
-            <LineChart axis="axis2" series={timeseries} />
-          </Charts>
-          <YAxis
-            id="axis2"
-            label="Euro"
-            min={0.5}
-            max={1.5}
-            width="80"
-            type="linear"
-            format="$,.2f"
-          />
-        </ChartRow>
-      </ChartContainer>
-    </div>
-  );
+	const {
+		data: { sortedGraphData },
+	} = useSelector((state) => state);
+
+	return (
+		<>
+			<ResponsiveContainer aspect={1.8}>
+				<LineChart
+					width={730}
+					height={250}
+					data={sortedGraphData}
+					margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+				>
+					<CartesianGrid strokeDasharray='3 3' />
+					<XAxis dataKey='name' />
+					<YAxis />
+					<Tooltip />
+
+					<Legend />
+					<Line
+						type='monotone'
+						dataKey='Cost price'
+						stroke='#8884d8'
+					/>
+					<Line
+						type='monotone'
+						dataKey='Selling Price'
+						stroke='#82ca9d'
+					/>
+				</LineChart>
+			</ResponsiveContainer>
+		</>
+	);
 };
 
 export default TimeSeriesChart;

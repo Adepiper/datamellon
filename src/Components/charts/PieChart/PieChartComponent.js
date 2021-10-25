@@ -53,7 +53,7 @@ const PieChartComponent = () => {
 							labelLine={false}
 							label={renderCustomizedLabel}
 							outerRadius={150}
-							dataKey='value'
+							dataKey='Total Number'
 						>
 							{sortedGraphData.map((entry, index) => (
 								<Cell

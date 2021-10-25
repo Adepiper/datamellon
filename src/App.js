@@ -32,11 +32,12 @@ function App() {
 					<div className='chart'>
 						<CompositeBarChart />
 					</div>
-					<div className='chart'>
-						<Table />
-					</div>
+
 					<div className='chart'>
 						<TimeSeriesChart />
+					</div>
+					<div className='tableContainer'>
+						<Table />
 					</div>
 				</div>
 			)}

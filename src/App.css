@@ -3,14 +3,21 @@
 	justify-content: space-between;
 	flex-wrap: wrap;
 }
-.chart {
+.chart,
+.tableContainer {
 	width: 48%;
 	border: 1px solid #dddddd;
 	border-radius: 8px;
 	opacity: 1;
-	margin-bottom: 50px !important;
+	margin: 50px 0 !important;
 	height: auto;
+	padding: 10px;
 }
+
+.tableContainer {
+	width: 100%;
+}
+
 @media only screen and (max-width: 1200px) {
 	.charts {
 		flex-direction: column;
