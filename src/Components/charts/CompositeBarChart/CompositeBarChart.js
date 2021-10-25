@@ -59,7 +59,7 @@ const data = [
 const CompositeBarChart = () => {
 	return (
 		<div>
-			<ResponsiveContainer aspect={1.5}>
+			<ResponsiveContainer aspect={2}>
 				<BarChart
 					width={500}
 					height={400}

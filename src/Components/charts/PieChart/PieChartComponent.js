@@ -33,21 +33,21 @@ const renderCustomizedLabel = ({
 
 const PieChartComponent = () => {
 	const {
-		data: { sortedData },
+		data: { sortedGraphData },
 	} = useSelector((state) => state);
 
 	const generateRandomColors = () =>
-		[...sortedData].map((data) => {
+		[...sortedGraphData].map((data) => {
 			return { color: randomColor(), name: data.name };
 		});
 
 	return (
 		<>
-			{sortedData.length > 0 && (
-				<ResponsiveContainer aspect={1.5}>
+			{sortedGraphData.length > 0 && (
+				<ResponsiveContainer aspect={1.8}>
 					<PieChart>
 						<Pie
-							data={sortedData}
+							data={sortedGraphData}
 							cx='50%'
 							cy='50%'
 							labelLine={false}
@@ -55,7 +55,7 @@ const PieChartComponent = () => {
 							outerRadius={150}
 							dataKey='value'
 						>
-							{sortedData.map((entry, index) => (
+							{sortedGraphData.map((entry, index) => (
 								<Cell
 									key={`cell-${index}`}
 									fill={

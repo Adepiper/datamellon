@@ -14,13 +14,13 @@ import { useSelector } from 'react-redux';
 
 const BarChartComponent = () => {
 	const {
-		data: { sortedData },
+		data: { sortedGraphData },
 	} = useSelector((state) => state);
 	return (
 		<>
-			{sortedData.length > 0 && (
-				<ResponsiveContainer aspect={1.5}>
-					<BarChart data={sortedData}>
+			{sortedGraphData.length > 0 && (
+				<ResponsiveContainer aspect={1.8}>
+					<BarChart data={sortedGraphData}>
 						<CartesianGrid strokeDasharray='3 3' />
 						<XAxis dataKey='name' />
 						<YAxis />

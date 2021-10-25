@@ -12,15 +12,23 @@ const useSortData = () => {
 		const keys = Object.keys(obj);
 
 		const sortedData = getTotalAmountFromKeys(data, keys, type);
+		dispatch(dataAction.setkeys(keys));
+
 		dispatch(dataAction.setSortData(sortedData));
+		getGraphData(sortedData);
+	};
+
+	const getGraphData = (data) => {
+		const newData = data.map(({ key, value }) => {
+			return { name: key, value: value.length };
+		});
+		dispatch(dataAction.setSortGraphData(newData));
 	};
 
 	const getTotalAmountFromKeys = (data = [], keys = [], type) =>
 		keys.map((key) => {
-			const value = data.filter(
-				(element) => element[type] === key
-			).length;
-			return { name: key, value };
+			const value = data.filter((element) => element[type] === key);
+			return { value, key };
 		});
 
 	return getKeys;

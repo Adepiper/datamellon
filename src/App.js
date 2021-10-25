@@ -20,10 +20,9 @@ function App() {
 			<button onClick={sendRequest}> click me </button>
 			{loading && <NormalLoader />}
 			<Navbar />
-			<SearchBar />
 			<DropdownContainer />
 			{!loading && (
-				<div className=' container charts p-4'>
+				<div className='container-fluid charts p-4'>
 					<div className='chart'>
 						<BarChartComponent />
 					</div>
