@@ -49,11 +49,14 @@ const DropdownContainer = () => {
 		<>
 			{allData.length > 0 && (
 				<>
-					<Dropdown
-						options={options}
-						onChange={_onSelect}
-						value={type}
-					></Dropdown>
+					<div className='dropdown'>
+						<p>Filter by:</p>
+						<Dropdown
+							options={options}
+							onChange={_onSelect}
+							value={type}
+						></Dropdown>
+					</div>
 				</>
 			)}
 		</>

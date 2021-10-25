@@ -11,35 +11,47 @@ import SearchBar from './Components/SearchBar/SearchBar';
 import useHttps from './hooks/useHttps';
 import TimeSeriesChart from './Components/charts/TimeSeriesChart/TimeSeriesChart';
 import DropdownContainer from './Components/dropdown/Dropdown';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function App() {
 	const { sendRequest, loading } = useHttps();
 
+	const {
+		data: { allData },
+	} = useSelector((state) => state);
+
+	useEffect(() => {
+		sendRequest();
+	}, []);
+
 	return (
 		<div className='App'>
-			<button onClick={sendRequest}> click me </button>
 			{loading && <NormalLoader />}
 			<Navbar />
-			<DropdownContainer />
-			{!loading && (
-				<div className='container-fluid charts p-4'>
-					<div className='chart'>
-						<BarChartComponent />
-					</div>
-					<div className='chart'>
-						<PieChartComponent />
-					</div>
-					<div className='chart'>
-						<CompositeBarChart />
-					</div>
 
-					<div className='chart'>
-						<TimeSeriesChart />
+			{allData.length > 0 && (
+				<>
+					<DropdownContainer />
+					<div className='container-fluid charts p-4'>
+						<div className='chart'>
+							<BarChartComponent />
+						</div>
+						<div className='chart'>
+							<PieChartComponent />
+						</div>
+						<div className='chart'>
+							<CompositeBarChart />
+						</div>
+
+						<div className='chart'>
+							<TimeSeriesChart />
+						</div>
+						<div className='tableContainer'>
+							<Table />
+						</div>
 					</div>
-					<div className='tableContainer'>
-						<Table />
-					</div>
-				</div>
+				</>
 			)}
 		</div>
 	);
